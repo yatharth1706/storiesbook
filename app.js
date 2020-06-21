@@ -19,6 +19,9 @@ const app = express();
 app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
+// Routes
+app.use('/', require('./routes/index'));
+
 // Logging
 
 if(process.env.NODE_ENV == 'development') {
