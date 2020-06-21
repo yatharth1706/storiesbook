@@ -9,7 +9,7 @@ const router = express.Router();
  * Function: Login/Landing Page
  */
 router.get('/', (req,res) => {
-    res.send('Login')
+    res.render('login')
 })
 
 
@@ -18,7 +18,7 @@ router.get('/', (req,res) => {
  * Function: Dashboard
  */
 router.get('/dashboard', (req,res) => {
-    res.send('Dashboard')
+    res.render('dashboard')
 })
 
 
