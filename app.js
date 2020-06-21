@@ -3,12 +3,17 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDb = require('./config/db');
 const exphbs = require('express-handlebars');
+const passport = require('passport');
+const session = require('express-session');
 const morgan = require('morgan');
 // Load config
 
 dotenv.config({
     path: './config/config.env'
 });
+
+// Passport configuration
+require('./config/passport')(passport);
 
 // Start the mongodb connection
 connectDb();
@@ -19,6 +24,17 @@ const app = express();
 // Settings for handlebars
 app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
+
+// Session Middleware
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+  }))
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Static files access configuration
 app.use(express.static(path.join(__dirname, 'public')))
