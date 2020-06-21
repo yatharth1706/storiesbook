@@ -18,4 +18,3 @@
 [Traversy Media Nodejs' Youtube Video](https://www.youtube.com/watch?v=SBvmnHTQIPY&t=7857s)
 
 
-::timer
