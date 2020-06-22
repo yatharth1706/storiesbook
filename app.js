@@ -23,8 +23,16 @@ connectDb();
 // Initialize App
 const app = express();
 
+// body-parser
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+
+//Handlebar helpers
+const { formatDate } = require('./helpers/hbs')
+
+
 // Settings for handlebars
-app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs'}));
+app.engine('.hbs', exphbs({ helpers: {formatDate,} ,defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
 // Session Middleware
@@ -45,6 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Routes
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
+app.use('/stories', require('./routes/stories'));
 
 // Logging
 
