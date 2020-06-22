@@ -4,12 +4,12 @@
         <div class="col s-12 m4">
             <div class="card">
                 <div class="card-image">
-                    {{!-- todo: editIcon --}}
+                    {{{editIcon user ../user _id}}}
 
                 </div>
                 <div class="card-content center-align">
                     <h5>{{title}}</h5>
-                    <p>{{body}}</p>
+                    <p>{{truncate (stripTags body)}}</p>
                     <br>
                     <div class="chip">
                         <img src="{{user.image}}" alt="">
